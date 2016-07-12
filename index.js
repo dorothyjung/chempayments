@@ -18,7 +18,7 @@ app.get('/about', function(request, response) {
 });
 
 app.get('/lessons', function(request, response) {
-  response.render('pages/energy');
+  response.render('pages/lessons');
 });
 
 app.get('/lessons/energy', function(request, response) {
