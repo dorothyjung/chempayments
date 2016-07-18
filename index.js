@@ -4,19 +4,21 @@ var stormpath = require('express-stormpath');
 
 var app = express();
 
+// stormpath user auth API setup
+app.use(stormpath.init(app, {
+  website: true
+}));
+
 // app running on port 5000
 app.set('port', (process.env.PORT || 5000));
 
 // stormpath listening on port 3000
 app.on('stormpath.ready', function() {
-  app.listen(process.env.PORT || 3000);
+  app.listen(app.get('port') || 3000);
 });
 
 // static assets and formatting code
 app.use(express.static(__dirname + '/public'));
-
-// stormpath user auth API setup
-app.use(stormpath.init(app, { website: true }));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
