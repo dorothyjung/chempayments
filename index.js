@@ -20,56 +20,64 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
+app.get('/', function (req, res) {
+  res.render('pages/index');
 });
 
-app.get('/about', function(request, response) {
-  response.render('pages/index');
+app.get('/about', function (req, res) {
+  res.render('pages/index');
 });
 
-app.get('/lessons', function(request, response) {
-  response.render('pages/energy');
+app.get('/login', function (req, res) {
+  next();
 });
 
-app.get('/lessons/energy', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/lessons/kinetics', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons/energy', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/lessons/keq', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons/kinetics', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/lessons/ph', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons/keq', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/lessons/echem', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons/ph', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/prep', function(request, response) {
-  response.render('pages/energy');
+app.get('/lessons/echem', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/prep/categorized', function(request, response) {
-  response.render('pages/energy');
+app.get('/prep', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/prep/qanda', function(request, response) {
-  response.render('pages/energy');
+app.get('/prep/categorized', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/reading/', function(request, response) {
-  response.render('pages/energy');
+app.get('/prep/qanda', function (req, res) {
+  res.render('pages/energy');
 });
 
-app.get('/topics', function(request, response) {
-  response.render('pages/energy');
+app.get('/reading/', function (req, res) {
+  res.render('pages/energy');
+});
+
+app.get('/topics', function (req, res) {
+  res.render('pages/energy');
+});
+
+app.get('/logout', function (req, res) {
+  // form(action='/logout', method='POST', id="logout_form")
 });
 
 app.on('stormpath.ready', function() {
