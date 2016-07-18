@@ -1,9 +1,22 @@
+// server-side code
 var express = require('express');
+var stormpath = require('express-stormpath');
+
 var app = express();
 
+// app running on port 5000
 app.set('port', (process.env.PORT || 5000));
 
+// stormpath listening on port 3000
+app.on('stormpath.ready', function() {
+  app.listen(process.env.PORT || 3000);
+});
+
+// static assets and formatting code
 app.use(express.static(__dirname + '/public'));
+
+// stormpath user auth API setup
+app.use(stormpath.init(app, { website: true }));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -14,11 +27,11 @@ app.get('/', function(request, response) {
 });
 
 app.get('/about', function(request, response) {
-  response.render('pages/about');
+  response.render('pages/index');
 });
 
 app.get('/lessons', function(request, response) {
-  response.render('pages/lessons');
+  response.render('pages/energy');
 });
 
 app.get('/lessons/energy', function(request, response) {
