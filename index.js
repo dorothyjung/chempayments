@@ -1,20 +1,22 @@
 // server-side code
 var express = require('express');
 var stormpath = require('express-stormpath');
+var port = process.env.PORT || 5000;
 
 var app = express();
+
+// app running on port 5000
+app.set('port', port);
 
 // stormpath user auth API setup
 app.use(stormpath.init(app, {
   website: true
 }));
 
-// app running on port 5000
-app.set('port', (process.env.PORT || 5000));
-
-// stormpath listening on port 3000
 app.on('stormpath.ready', function() {
-  app.listen(app.get('port') || 3000);
+  console.log('app running on port 5000')
+  app.listen(app.get('port'));
+  // console.log('app running on port 5000')
 });
 
 // static assets and formatting code
