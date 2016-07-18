@@ -4,20 +4,14 @@ var stormpath = require('express-stormpath');
 var port = process.env.PORT || 5000;
 
 var app = express();
+var admin = express();
 
-// app running on port 5000
 app.set('port', port);
 
 // stormpath user auth API setup
 app.use(stormpath.init(app, {
   website: true
 }));
-
-app.on('stormpath.ready', function() {
-  console.log('app running on port 5000')
-  app.listen(app.get('port'));
-  // console.log('app running on port 5000')
-});
 
 // static assets and formatting code
 app.use(express.static(__dirname + '/public'));
@@ -78,7 +72,8 @@ app.get('/topics', function(request, response) {
   response.render('pages/energy');
 });
 
-app.listen(app.get('port'), function() {
+app.on('stormpath.ready', function() {
+  app.listen(app.get('port'));
   console.log('Node app is running on port', app.get('port'));
 });
 
