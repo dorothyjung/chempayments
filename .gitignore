@@ -1,3 +1,5 @@
+virtualenv_run
+
 # Node build artifacts
 node_modules
 npm-debug.log
