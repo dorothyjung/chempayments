@@ -1,4 +1,7 @@
-virtualenv_run
+venv
+*.pyc
+staticfiles
+.env
 
 # Node build artifacts
 node_modules
